@@ -7,5 +7,6 @@ defmodule CautiousMemeWeb.Router do
 
   scope "/api", CautiousMemeWeb do
     pipe_through :api
+    resources "/pokemons", PokemonController, except: [:new, :edit]
   end
 end
