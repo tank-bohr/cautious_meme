@@ -8,6 +8,7 @@ sql:
 
 CONTROLLER=lib/cautious_meme_web/controllers/pokemon_controller.ex
 POKEMON_TYPE_SCHEMA=lib/cautious_meme/pokemons/type.ex
+POKEMONS_DATA=priv/repo/pokemons.json
 
 .PHONY: bootstrap
 bootstrap: $(CONTROLLER) $(POKEMON_TYPE_SCHEMA)
@@ -27,3 +28,6 @@ $(POKEMON_TYPE_SCHEMA):
 	mix phx.gen.schema Pokemons.Type pokemon_types \
 		pokemon_id:references:pokemons \
 		name:string
+
+$(POKEMONS_DATA):
+	mix pokemons.grab > $(POKEMONS_DATA)
