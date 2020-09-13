@@ -20,4 +20,9 @@ defmodule CautiousMemeWeb.PokemonView do
       special_defense: pokemon.special_defense,
       speed: pokemon.speed}
   end
+
+  def stale_checks("index.json", %{pokemons: data}) do
+    [etag: schema_etag(data),
+     last_modified: schema_last_modified(data)]
+  end
 end

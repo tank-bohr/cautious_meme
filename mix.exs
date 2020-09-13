@@ -41,6 +41,7 @@ defmodule CautiousMeme.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:phoenix_etag, "~> 0.1"},
       {:floki, "~> 0.28.0", only: [:dev]},
       {:httpoison, "~> 1.6", only: [:dev]}
     ]

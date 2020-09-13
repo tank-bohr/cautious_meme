@@ -8,7 +8,7 @@ defmodule CautiousMemeWeb.PokemonController do
 
   def index(conn, _params) do
     pokemons = Pokemons.list_pokemons()
-    render(conn, "index.json", pokemons: pokemons)
+    render_if_stale(conn, "index.json", pokemons: pokemons)
   end
 
   def create(conn, %{"pokemon" => pokemon_params}) do

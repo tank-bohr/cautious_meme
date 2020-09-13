@@ -22,6 +22,11 @@ defmodule CautiousMemeWeb do
       use Phoenix.Controller, namespace: CautiousMemeWeb
 
       import Plug.Conn
+      import PhoenixETag, only: [
+        render_if_stale: 2,
+        render_if_stale: 3,
+        render_if_stale: 4,
+      ]
       alias CautiousMemeWeb.Router.Helpers, as: Routes
     end
   end
@@ -35,6 +40,11 @@ defmodule CautiousMemeWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+
+      import PhoenixETag, only: [
+        schema_etag: 1,
+        schema_last_modified: 1
+      ]
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
