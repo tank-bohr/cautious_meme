@@ -13,8 +13,14 @@ defmodule Mix.Tasks.Pokemons.Grab do
     |> List.first()
     |> Floki.children()
     |> Enum.map(fn row ->
-      name = row
+      name =
+        row
         |> Floki.find("td.cell-name a.ent-name")
+        |> Floki.text()
+
+      mod =
+        row
+        |> Floki.find("td.cell-name small.text-muted")
         |> Floki.text()
 
       types = row
@@ -28,20 +34,23 @@ defmodule Mix.Tasks.Pokemons.Grab do
           |> String.trim_leading("type-")
         end)
 
-      [_, hp, attack, defense, special_attack, special_defense, speed] =
+      [number, hp, attack, defense, special_attack, special_defense, speed] =
         row
         |> Floki.find("td.cell-num")
         |> Enum.map(&Floki.text/1)
-        %{
-          name: name,
-          types: types,
-          hp: hp,
-          attack: attack,
-          defense: defense,
-          special_attack: special_attack,
-          special_defense: special_defense,
-          speed: speed,
-        }
+
+      %{
+        number: number,
+        name: name,
+        mod: mod,
+        types: types,
+        hp: hp,
+        attack: attack,
+        defense: defense,
+        special_attack: special_attack,
+        special_defense: special_defense,
+        speed: speed,
+      }
     end)
     |> Jason.encode!()
     |> IO.puts()

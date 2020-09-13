@@ -11,7 +11,7 @@ POKEMON_TYPE_SCHEMA=lib/cautious_meme/pokemons/type.ex
 POKEMONS_DATA=priv/repo/pokemons.json
 
 .PHONY: bootstrap
-bootstrap: $(CONTROLLER) $(POKEMON_TYPE_SCHEMA)
+bootstrap: $(CONTROLLER) $(POKEMON_TYPE_SCHEMA) $(POKEMONS_DATA)
 
 $(CONTROLLER):
 	mix phx.gen.json \

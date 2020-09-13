@@ -2,6 +2,8 @@ defmodule CautiousMeme.Pokemons.Pokemon do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias CautiousMeme.Pokemons.Type
+
   schema "pokemons" do
     field :attack, :integer
     field :defense, :integer
@@ -10,6 +12,7 @@ defmodule CautiousMeme.Pokemons.Pokemon do
     field :special_attack, :integer
     field :special_defense, :integer
     field :speed, :integer
+    has_many :types, Type
 
     timestamps()
   end
