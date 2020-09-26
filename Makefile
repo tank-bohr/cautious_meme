@@ -6,6 +6,18 @@ server:
 sql:
 	docker-compose run db mysql -u root cautious_meme_dev -h db
 
+###############
+### Maxwell ###
+###############
+
+.PHONY: setup_maxwell
+setup_maxwell:
+	docker-compose run db mysql -u root -h db -e "\
+		CREATE USER 'maxwell'@'%' IDENTIFIED BY 'maxwell';\
+		GRANT ALL ON maxwell.* TO 'maxwell'@'%';\
+		GRANT SELECT, REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'maxwell'@'%';\
+	"
+
 ################
 ### Debezium ###
 ################
