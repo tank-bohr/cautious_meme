@@ -7,6 +7,8 @@ services:
       - "3306:3306"
     environment:
       - "MYSQL_ALLOW_EMPTY_PASSWORD=yes"
+    volumes:
+      - "./.mysql_data_dir:/var/lib/mysql/"
 
   zk:
     image: debezium/zookeeper:1.2
@@ -21,6 +23,7 @@ services:
       - "9092:9092"
     environment:
       - "ZOOKEEPER_CONNECT=zk:2181"
+      # - "ADVERTISED_HOST_NAME=localhost:9092"
 
   connect:
     image: debezium/connect:1.2
